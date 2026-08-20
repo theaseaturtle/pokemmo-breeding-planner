@@ -4,14 +4,6 @@ Thumbs.db
 *.swp
 *.swo
 
-# Local development state
+# Local development and agent state
 .claude/
-
-# Temporary assembly files; published artifacts are self-contained HTML files.
-v103-core.js
-v103-extra.css
-v104-core.js
-v105-core.js
-
-# Session handoff material
-pokemmo-breeding-planner-handoff-*.md
+workbench/

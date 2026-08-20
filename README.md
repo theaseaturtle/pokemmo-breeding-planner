@@ -2,21 +2,11 @@
 
 一个可离线使用的单文件 HTML 工具，用于把 PokeMMO 的配种目标、基础亲本资源、道具消耗、成本审计与实际执行记录放在同一份可追溯的计划中。
 
-在线使用：<https://theaseaturtle.github.io/pokemmo-breeding-planner/>
+- 在线使用：<https://theaseaturtle.github.io/pokemmo-breeding-planner/>
+- 最新离线文件：[v1.0.5](app/pokemmo-breeding-planner-v1.0.5-2026-08-19.html)
+- 历史版本索引：[版本档案](docs/releases.md)
 
-也可以下载任意版本的 HTML 文件后直接在浏览器中打开。应用不依赖网络服务；库存与执行账本仅保存在当前浏览器的本地存储中。
-
-## 当前版本
-
-[`v1.0.5`](pokemmo-breeding-planner-v1.0.5-2026-08-19.html) 是当前稳定版本。它支持：
-
-- 全图鉴物种搜索、目标与育种目标的区分，以及可解释的支持状态；
-- 1V 至 6V 的确定性配种树与目标性格分支；
-- 长期库存、待购资源、一次性道具库存、Yen 与 BP 分离审计；
-- 两阶段计划、依赖有序的执行确认、撤销和临时产物池；
-- 无性别路线：仅允许目标物种自身或百变怪作为配对亲本；
-- 可访问的搜索与有限选项组合框，以及移动端布局；
-- 从当前计划模型生成的 PNG 长图导出。
+应用不依赖网络服务；库存与执行账本仅保存在当前浏览器的本地存储中。
 
 ## 使用方式
 
@@ -28,25 +18,35 @@
 
 > 浏览器本地数据是唯一的执行账本。清理网站数据、切换浏览器或使用无痕窗口可能丢失本地记录。
 
-## 版本档案
+## 仓库导览
 
-本仓库的 Git 提交与标签按以下版本快照重建，便于查看功能演变。旧版本彼此独立，使用不同的浏览器本地存储键。
+| 目录 / 文件 | 用途 |
+| --- | --- |
+| [`app/`](app/) | 当前稳定版的可直接打开 HTML 文件；GitHub Pages 也会打开它。 |
+| [`releases/`](releases/) | 旧版稳定发布档案，每个文件可独立离线使用。 |
+| [`archive/prototypes/`](archive/prototypes/) | `0.1.0-alpha` 的原始原型来源，仅作历史参考。 |
+| [`docs/`](docs/) | 产品规格、验收案例与版本说明。 |
+| [`CONTEXT.md`](CONTEXT.md) | 项目统一的领域词汇表。 |
+| `workbench/`（本地忽略） | 本地组装和会话辅助文件；不会提交或部署。 |
 
-| 版本 | 说明 | 文件 |
-| --- | --- | --- |
-| `0.1.0-alpha` | 初始原型归档 | [`pokemmo-breeding-planner.html`](pokemmo-breeding-planner.html) |
-| `v1.0.0` | 首个可信执行账本版本 | [`v1.0.0`](pokemmo-breeding-planner-v1.0.0-2026-08-19.html) |
-| `v1.0.1` | 修正目标性格承载不应额外增加基础素材 | [`v1.0.1`](pokemmo-breeding-planner-v1.0.1-2026-08-19.html) |
-| `v1.0.2` | 明确雌性主线与雄性捐赠亲本语义 | [`v1.0.2`](pokemmo-breeding-planner-v1.0.2-2026-08-19.html) |
-| `v1.0.3` | 确定性树、资源分组、蛋组资格和道具账本 | [`v1.0.3`](pokemmo-breeding-planner-v1.0.3-2026-08-19.html) |
-| `v1.0.4` | 生物性别锁定与统一可访问组合框 | [`v1.0.4`](pokemmo-breeding-planner-v1.0.4-2026-08-19.html) |
-| `v1.0.5` | 无性别同种/百变怪路线与组合框菜单修复 | [`v1.0.5`](pokemmo-breeding-planner-v1.0.5-2026-08-19.html) |
+## 当前版本
 
-## 开发与验证资料
+[`v1.0.5`](app/pokemmo-breeding-planner-v1.0.5-2026-08-19.html) 是当前稳定版本。它支持：
 
-- [产品规格](SPEC-pokemmo-breeding-planner.md)
-- [验收案例](ACCEPTANCE-CASES-pokemmo-breeding-planner.md)
+- 全图鉴物种搜索、目标与育种目标的区分，以及可解释的支持状态；
+- 1V 至 6V 的确定性配种树与目标性格分支；
+- 长期库存、待购资源、一次性道具库存、Yen 与 BP 分离审计；
+- 两阶段计划、依赖有序的执行确认、撤销和临时产物池；
+- 无性别路线：仅允许目标物种自身或百变怪作为配对亲本；
+- 可访问的搜索与有限选项组合框，以及移动端布局；
+- 从当前计划模型生成的 PNG 长图导出。
+
+## 文档
+
+- [产品规格](docs/specification.md)
+- [验收案例](docs/acceptance-cases.md)
 - [领域词汇表](CONTEXT.md)
+- [版本档案](docs/releases.md)
 
 ## 许可证
 
