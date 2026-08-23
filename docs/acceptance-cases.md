@@ -606,7 +606,7 @@ Prove that multiple inventory entries can be recorded before planning and that a
 - The execution step shows 走路草（雌性）+ 喇叭芽（雄性）→ 走路草（雄性、物攻 31 + 速度 31）
 - A later target-mainline step consumes that male donor to produce 妙蛙种子
 - If inventory changes after generation, the old Resource Plan stays visible, becomes stale, and cannot be locked
-- Ditto can replace either donor side, but Ditto × Ditto is replaced by a legal non-Ditto purchase source
+- Ditto can replace either donor side; automatic allocation repairs Ditto × Ditto with a legal non-Ditto purchase source, while manual allocation rejects the conflicting second Ditto
 
 #### Expected Cost Output
 - Gender-selection fees use each real intermediate species
@@ -614,3 +614,54 @@ Prove that multiple inventory entries can be recorded before planning and that a
 
 #### Notes For Confirmation
 - Confirmed through the v1.0.7 design interview, automated tests, and browser scenario.
+
+---
+
+### CASE-012 - Concise parent labels and bounded purchase-source allocation
+status: confirmed
+priority: P0
+category: usability
+
+#### Intent
+Prove that resource and execution labels remain scannable while explicit Purchase Source Allocations replace, rather than duplicate, Automatic Purchase Fallback slots.
+
+#### Inputs
+- User target: 妙蛙种子
+- Target nature: 固执
+- Active Donor Egg Group: 植物
+- A donor resource group with two unfilled purchased-parent slots
+
+#### Expected Support State
+- User target support state: fully plannable
+- Breeding target support state: fully plannable
+
+#### Expected Diagnosis
+- Outcome class: plannable
+- Expected explanation: unchanged from the legal breeding route
+- Minimum repair suggestion: none
+
+#### Expected Planning Output
+- Resource titles contain only IV, value, and biological sex, such as `物攻 31 · 雄性`
+- Role chips show `目标物种` or the Active Donor Egg Group, such as `植物蛋组`
+- Adding one explicit species produces one Manual Purchase Source Allocation and leaves one Automatic Purchase Fallback
+- Adding a second explicit species consumes the final fallback slot
+- A third allocation is rejected because all purchase slots are assigned
+- Removing an explicit allocation restores Automatic Purchase Fallback coverage
+- Automatic fallback rows cannot be removed
+- A manual allocation that would form Ditto × Ditto is rejected before it changes the plan
+
+#### Expected Execution Output
+- Steps appear in dependency order as `第 1 步`, `第 2 步`, and so on, with the real output species, IVs, and nature in each title
+- No execution card uses planning-role or tree-layer labels such as mainline, donor, parent A/B, or pure-IV layer
+- Each parent uses its real species as the heading and shows Biological Sex, Acquisition Source, IVs, nature, and held item
+- Acquisition Source is `仓库`, `市场`, or `上一步产物`; it does not use `待购` inside a locked execution plan
+- Each breeding step shows `本次锁公`, `本次锁母`, `本次不锁性别`, or `无需锁性别` once between the two Parent Loadouts
+- A nature-only route displays `携带：无` on the parent that needs no inheritance item
+- The former repeated output box is absent
+
+#### Expected Cost Output
+- Purchase-source allocation changes species distribution but not the number of required parents
+- Currency separation remains unchanged
+
+#### Notes For Confirmation
+- Confirmed through the v1.0.8 design interview and red-green tests.

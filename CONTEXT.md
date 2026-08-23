@@ -52,6 +52,22 @@ An inventory parent that satisfies its assigned role and carries the required IV
 
 A legal inventory parent that carries additional target IVs which the assigned tree position would discard. It is excluded from automatic allocation but may be selected through an explicit manual override.
 
+## Purchase Source Allocation
+
+The user's explicit distribution of a resource group's unfilled parent slots among legal purchasable species. It occupies Automatic Purchase Fallback slots, cannot exceed the group's purchase requirement, and must not create a Ditto × Ditto pairing.
+
+## Automatic Purchase Fallback
+
+The legal default species used only to fill purchased-parent slots not covered by a Purchase Source Allocation. Removing an explicit allocation restores fallback coverage so the total purchased-parent count remains equal to the requirement.
+
+## Acquisition Source
+
+The origin from which a parent is available at the moment an execution step is performed: Inventory, Market, or Previous-Step Output. It describes provenance rather than whether a purchase is still pending.
+
+## Parent Loadout
+
+The execution-ready identity of one breeding input: its real species, Biological Sex, Acquisition Source, IVs, nature, and held item. Planning roles such as mainline or donor are not part of a Parent Loadout.
+
 ## Finite-option Combobox
 
 A searchable, accessible control for selecting an existing finite option. It accepts only legal displayed options, supports mouse, Arrow Up, Arrow Down, Enter, and Escape, and restores the last legal value on invalid blur.
