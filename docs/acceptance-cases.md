@@ -566,3 +566,51 @@ Prove that the long-image export is a trustworthy mirror of the page result rath
 
 #### Notes For Confirmation
 - Confirm final export density and truncation rules later.
+
+---
+
+### CASE-011 - Batch inventory and cross-species donor subtree
+status: confirmed
+priority: P0
+category: execution
+
+#### Intent
+Prove that multiple inventory entries can be recorded before planning and that a donor-building subtree uses compatible cross-species parents while preserving the final target species.
+
+#### Inputs
+- User target: 妙蛙种子
+- Target IVs: 物攻 31、速度 31
+- Target nature: 固执
+- Target final gender: 雌性
+- Active Donor Egg Group: 植物
+- Inventory: 走路草（雌性、物攻 31）、喇叭芽（雄性、速度 31）
+
+#### Expected Support State
+- User target support state: fully plannable
+- Breeding target support state: fully plannable
+
+#### Expected Diagnosis
+- Outcome class: plannable after the Active Donor Egg Group is selected
+- Expected explanation: a dual-Egg-Group target must explicitly select one donor Egg Group
+- Minimum repair suggestion: select 怪兽 or 植物 when no group is selected
+
+#### Expected Planning Output
+- Adding or removing inventory does not generate a Resource Plan automatically
+- 走路草 and 喇叭芽 are allocated inside the Donor-Building Subtree
+- The 2V male donor output species is 走路草
+- The final output species remains 妙蛙种子
+- Ordinary Strict Parent Matches are allocated before Ditto
+- Wasteful Parent Matches require a manual override
+
+#### Expected Execution Output
+- The execution step shows 走路草（雌性）+ 喇叭芽（雄性）→ 走路草（雄性、物攻 31 + 速度 31）
+- A later target-mainline step consumes that male donor to produce 妙蛙种子
+- If inventory changes after generation, the old Resource Plan stays visible, becomes stale, and cannot be locked
+- Ditto can replace either donor side, but Ditto × Ditto is replaced by a legal non-Ditto purchase source
+
+#### Expected Cost Output
+- Gender-selection fees use each real intermediate species
+- Currency separation remains unchanged
+
+#### Notes For Confirmation
+- Confirmed through the v1.0.7 design interview, automated tests, and browser scenario.
