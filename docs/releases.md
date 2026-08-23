@@ -12,10 +12,11 @@ Git 标签保留各版本发布当时的目录结构；下表描述的是当前 
 | `v1.0.2` | 2026-08-19 | 明确雌性主线与雄性捐赠亲本语义 | [HTML](../releases/pokemmo-breeding-planner-v1.0.2-2026-08-19.html) |
 | `v1.0.3` | 2026-08-19 | 确定性树、资源分组、蛋组资格和道具账本 | [HTML](../releases/pokemmo-breeding-planner-v1.0.3-2026-08-19.html) |
 | `v1.0.4` | 2026-08-19 | 生物性别锁定与统一可访问组合框 | [HTML](../releases/pokemmo-breeding-planner-v1.0.4-2026-08-19.html) |
-| `v1.0.5` | 2026-08-19 | 无性别同种/百变怪路线与组合框菜单修复 | [当前 HTML](../app/pokemmo-breeding-planner-v1.0.5-2026-08-19.html) |
+| `v1.0.5` | 2026-08-19 | 无性别同种/百变怪路线与组合框菜单修复 | [HTML](../app/pokemmo-breeding-planner-v1.0.5-2026-08-19.html) |
+| `v1.0.6` | 2026-08-23 | 清理重复规划引擎定义，补充核心无性别路线回归测试 | [当前 HTML](../app/pokemmo-breeding-planner-v1.0.6-2026-08-23.html) |
 
 ## 如何选择版本
 
-- 想直接使用规划器：使用当前的 [`v1.0.5`](../app/pokemmo-breeding-planner-v1.0.5-2026-08-19.html)。
+- 想直接使用规划器：使用当前的 [`v1.0.6`](../app/pokemmo-breeding-planner-v1.0.6-2026-08-23.html)。
 - 想比较功能如何演变：选择对应 Git 标签，然后查看该标签下的发布文件。
 - 想保留某次执行账本：继续使用同一个版本和同一个浏览器配置；不同版本不会共享本地存储。
