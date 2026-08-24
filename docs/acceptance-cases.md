@@ -691,6 +691,8 @@ Prove that choosing a planned purchase species and actually acquiring it remain 
 #### Expected Execution Output
 - Confirmed Purchases enter the Plan Acquisition Pool rather than Long-Term Inventory.
 - An execution step with an unfulfilled purchased parent or item displays `等待采购` and cannot be confirmed.
+- Once every parent and item required by a dependency-ready step has been acquired, that step unlocks immediately without regenerating or relocking the plan.
+- A purchase shortage names the real missing species or item; internal group identifiers and biological-sex codes must never appear as missing resources.
 - Execution consumes plan acquisitions only after explicit step confirmation; undo restores the acquisition record.
 - Unconsumed acquisitions can be explicitly transferred to Long-Term Inventory.
 

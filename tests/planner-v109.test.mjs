@@ -11,7 +11,7 @@ function loadPlanner() {
   assert.ok(inline, 'v1.0.9 必须包含内联脚本');
   const script = inline.replace(
     /init\(\);\s*$/,
-    'globalThis.__planner={APP,POKEDEX_RAW,makeSpecies,diagnosis,resourcePlan,buildStage2,purchaseProgress,itemPurchaseProgress,confirmParentPurchase,confirmItemPurchase,undoPurchase,editPurchasePrice,transferPurchase,actualPurchaseSpend,acquisitionShortage};',
+    'globalThis.__planner={APP,POKEDEX_RAW,makeSpecies,diagnosis,resourcePlan,buildStage2,purchaseProgress,itemPurchaseProgress,confirmParentPurchase,confirmItemPurchase,undoPurchase,editPurchasePrice,transferPurchase,actualPurchaseSpend,acquisitionShortage,canConfirm};',
   );
   const context = vm.createContext({ console, confirm: () => true, structuredClone: globalThis.structuredClone, setTimeout, clearTimeout });
   vm.runInContext(script, context);
@@ -89,6 +89,27 @@ test('执行步骤在所需市场亲本尚未购入时显示等待采购', () =>
   const first = stage2.steps.find(step => step.kind === 'BREEDING');
 
   assert.match(planner.acquisitionShortage(first), /^等待采购：/);
+});
+
+test('亲本和道具全部购入后首个无依赖步骤立即解锁', () => {
+  const planner = loadPlanner();
+  const plan = normalPlan(planner);
+
+  for (const group of plan.groups) {
+    for (const row of group.purchase) {
+      assert.equal(planner.confirmParentPurchase(group, row.speciesName, row.quantity, group.unitPrice).ok, true);
+    }
+  }
+  for (const item of plan.items.filter(row => row.purchase > 0)) {
+    assert.equal(planner.confirmItemPurchase(item, item.purchase, item.unit).ok, true);
+  }
+
+  const stage2 = planner.buildStage2(planner.APP.stage1);
+  planner.APP.stage2 = stage2;
+  const first = stage2.steps.find(step => step.kind === 'BREEDING' && step.dependsOn.length === 0);
+
+  assert.equal(planner.acquisitionShortage(first), null);
+  assert.equal(planner.canConfirm(first), true);
 });
 
 test('未消耗采购可以转入长期库存且实际花费历史保留', () => {
