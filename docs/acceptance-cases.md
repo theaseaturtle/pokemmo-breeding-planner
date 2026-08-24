@@ -665,3 +665,40 @@ Prove that resource and execution labels remain scannable while explicit Purchas
 
 #### Notes For Confirmation
 - Confirmed through the v1.0.8 design interview and red-green tests.
+
+---
+
+### CASE-013 - Confirmed purchases reduce remaining purchase quantity
+status: confirmed
+priority: P0
+category: execution
+
+#### Intent
+Prove that choosing a planned purchase species and actually acquiring it remain separate facts, while every Confirmed Purchase visibly reduces the Remaining Purchase Quantity.
+
+#### Expected Planning Output
+- A parent resource card shows Requirement, Long-Term Inventory, Remaining Purchase Quantity, and Confirmed Purchase Quantity.
+- Purchase Source Allocation does not reduce the Purchase Requirement or Remaining Purchase Quantity.
+- Confirming an acquired quantity reduces Remaining Purchase Quantity and increases Confirmed Purchase Quantity by the same amount.
+- Each planned species shows its planned, confirmed, and remaining quantities.
+- A confirmed purchase uses a two-line record: purchase facts first, then lower-emphasis actions; Edit Actual Price and Transfer to Inventory are neutral actions while Undo remains visually dangerous.
+- Multiple purchases are summarized by species or item and expose their individual batches through collapsed progressive disclosure.
+- Editing Actual Purchase Price and its optional note happens inline without a native browser prompt.
+- A parent purchase form keeps quantity, actual unit price, optional note, and confirmation legible without squeezing record actions into the same row.
+- Item acquisition cards use three columns at wide content widths, two columns at medium widths, and one column below 600px; each card stacks its inputs above a full-width confirmation action.
+- Below 320px card width, record actions become three equal touch targets with at least 40px height.
+
+#### Expected Execution Output
+- Confirmed Purchases enter the Plan Acquisition Pool rather than Long-Term Inventory.
+- An execution step with an unfulfilled purchased parent or item displays `等待采购` and cannot be confirmed.
+- Execution consumes plan acquisitions only after explicit step confirmation; undo restores the acquisition record.
+- Unconsumed acquisitions can be explicitly transferred to Long-Term Inventory.
+
+#### Expected Cost Output
+- Reference Plan Cost stays stable.
+- Actual Purchase Spend uses the recorded actual unit price.
+- Remaining Estimated Spend uses current reference prices and remaining quantities.
+- Completion Forecast equals Actual Purchase Spend plus Remaining Estimated Spend.
+
+#### Notes For Confirmation
+- Confirmed through the v1.0.9 design interview and automated model tests.
