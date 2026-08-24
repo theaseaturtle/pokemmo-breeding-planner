@@ -4,7 +4,6 @@
 
 - 在线使用：<https://theaseaturtle.github.io/pokemmo-breeding-planner/>
 - 最新离线文件：[v1.0.9](app/pokemmo-breeding-planner-v1.0.9-2026-08-24.html)
-- UI 独立实验版：[v1.1.0](app/pokemmo-breeding-planner-v1.1.0-2026-08-24.html)
 - 历史版本索引：[版本档案](docs/releases.md)
 
 应用不依赖网络服务；库存与执行账本仅保存在当前浏览器的本地存储中。
@@ -45,12 +44,6 @@
 - 单一活跃捐赠蛋组、真实中间物种、同蛋组雌性捐赠与严格的百变怪替代规则；
 - 精简的资源卡、按步骤展示的宝可梦性别/来源/配装，以及可拆分、受名额约束的待购来源分配。
 - 方案采购池、逐物种与逐道具的确认购入、实际成交价、剩余待购数量和采购进度审计。
-
-## UI 独立实验版
-
-[`v1.1.0`](app/pokemmo-breeding-planner-v1.1.0-2026-08-24.html) 在不替换稳定版的前提下，以 `gpt-taste` 方向重构视觉层级、可靠双栏工作区、资源卡和执行步骤。它使用独立的 `v1.1.0` 本地存储，可迁移 `v1.0.9` 的目标、价格与长期库存，但不会迁移旧执行方案。
-
-该文件仍是完全离线的单文件 HTML；Geist 字体、GSAP 和 ScrollTrigger 均已内嵌。可通过 `node scripts/build-v110-ui.mjs` 从稳定版重新生成。
 
 ## 文档
 
