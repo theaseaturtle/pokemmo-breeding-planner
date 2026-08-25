@@ -64,6 +64,10 @@ The number of parents in a resource group that are not supplied by Long-Term Inv
 
 A record that the user has actually acquired one or more planned parents, including their assigned species, quantity, actual unit price, and optional note. It is distinct from a Purchase Source Allocation and reduces Remaining Purchase Quantity.
 
+## Confirmed Parent Assignment
+
+The deterministic binding of each Confirmed Purchase parent to a purchased-parent leaf in confirmation order. It is the species identity used by the Execution Plan and takes precedence over Automatic Purchase Fallback.
+
 ## Plan Acquisition Pool
 
 The plan-scoped collection of Confirmed Purchases that have not yet been consumed by execution or transferred to Long-Term Inventory. It is kept separate from Long-Term Inventory so planned acquisitions do not silently become reusable stock.
