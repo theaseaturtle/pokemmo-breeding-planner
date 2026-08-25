@@ -3,7 +3,7 @@
 一个可离线使用的单文件 HTML 工具，用于把 PokeMMO 的配种目标、基础亲本资源、道具消耗、成本审计与实际执行记录放在同一份可追溯的计划中。
 
 - 在线使用：<https://theaseaturtle.github.io/pokemmo-breeding-planner/>
-- 最新离线文件：[v1.0.17](app/pokemmo-breeding-planner-v1.0.17-2026-08-25.html)
+- 最新离线文件：[v1.0.18](app/pokemmo-breeding-planner-v1.0.18-2026-08-25.html)
 - 历史版本索引：[版本档案](docs/releases.md)
 
 应用不依赖网络服务；库存与执行账本仅保存在当前浏览器的本地存储中。
@@ -31,7 +31,7 @@
 
 ## 当前版本
 
-[`v1.0.17`](app/pokemmo-breeding-planner-v1.0.17-2026-08-25.html) 是当前稳定版本。它支持：
+[`v1.0.18`](app/pokemmo-breeding-planner-v1.0.18-2026-08-25.html) 是当前稳定版本。它支持：
 
 - 全图鉴物种搜索、目标与育种目标的区分，以及可解释的支持状态；
 - 1V 至 6V 的确定性配种树与目标性格分支；
