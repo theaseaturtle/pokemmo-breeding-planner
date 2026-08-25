@@ -30,7 +30,7 @@ A genderless parent whose species exactly matches the Genderless Route's Breedin
 
 ## Target-Species Mainline
 
-The lineage whose outputs must preserve the Breeding Target species through to the final result. A normally gendered route preserves that species through its female parent, except when breeding the target species with Ditto.
+The lineage that carries the Breeding Target's evolution family through the plan. Every actual node output is still recalculated as the Hatch Species of its real maternal parent; the mainline does not force an evolved target name onto an egg.
 
 ## Donor-Building Subtree
 
@@ -79,6 +79,18 @@ The unsatisfied portion of a Purchase Requirement after Confirmed Purchases are 
 ## Actual Purchase Spend
 
 The sum of actual unit price multiplied by quantity across Confirmed Purchases. Historical actual prices remain fixed when market reference prices change.
+
+## Hatch Species
+
+The real species produced by one breeding step. It is the earliest species in the maternal parent's evolution family; when Ditto occupies the maternal position, it follows the non-Ditto parent instead. It is distinct from both the actual parent species and the User Final Target.
+
+## Breeding Completion Output
+
+The Hatch Species produced by the root breeding step. It can differ from the User Final Target when the requested target is an evolved form. Evolution after breeding is outside the Execution Plan and is shown only as a scope note.
+
+## Route Replacement
+
+The confirmed change from one target route to another. It deletes the old Plan Acquisition Pool, including parent and item purchases, prices, and notes, while leaving Long-Term Inventory unchanged.
 
 ## Automatic Purchase Fallback
 

@@ -6,12 +6,14 @@ This document replaces the missing historical example spec with structured accep
 
 - Each case defines a user-visible scenario.
 - A case is only considered canonical after the user confirms it.
-- Cases should verify mechanism facts, diagnosis behavior, key planning output, post-processing handling, and cost output where relevant.
+- Cases should verify mechanism facts, diagnosis behavior, key planning output, breeding-completion/evolution scope handling, and cost output where relevant.
 - Until image-derived details are confirmed, some cases remain marked as `draft-from-context` rather than `confirmed`.
 
 ## Shared output expectations
 
 Every confirmed case should eventually be checked against the following result sections:
+
+Legacy fields named `Expected post-processing steps` are interpreted as evolution-scope expectations only: the execution plan must not generate an evolution step.
 
 - `user target`
 - `breeding target`
@@ -20,7 +22,7 @@ Every confirmed case should eventually be checked against the following result s
 - `main plan`
 - `alternative legal entry points`
 - `breeding steps`
-- `post-processing steps`
+- `breeding completion output and evolution scope note`
 - `inventory consumption`
 - `temporary outputs`
 - `cost breakdown`
@@ -63,7 +65,7 @@ What real-world behavior this case proves.
 
 #### Expected Execution Output
 - Expected breeding steps:
-- Expected post-processing steps:
+- Expected breeding completion output / evolution scope note:
 - Expected temporary-output behavior:
 - Expected inventory-consumption behavior:
 - Expected stale-plan behavior after edits:
@@ -113,15 +115,15 @@ Prove that any searchable Pokedex target is treated as a user target even when b
 
 #### Expected Execution Output
 - Expected breeding steps: generated only from breeding target
-- Expected post-processing steps: generated if evolution is required to reach user target
+- Expected breeding completion output / evolution scope note: show the real root Hatch Species; generate no evolution step and state that later evolution is outside the execution plan
 - Expected temporary-output behavior: normal
 - Expected inventory-consumption behavior: planning does not consume inventory
 - Expected stale-plan behavior after edits: route expires if route-defining inputs change
 
 #### Expected Cost Output
 - Expected currency separation: yes
-- Expected key cost drivers: breeding-only costs separated from post-processing
-- Expected total-cost notes: evolution/post-processing not counted as breeding cost
+- Expected key cost drivers: breeding-only costs separated from out-of-scope evolution
+- Expected total-cost notes: later evolution is not counted as breeding cost
 
 #### Notes For Confirmation
 - Need confirmed concrete species examples from the user.
@@ -704,3 +706,30 @@ Prove that choosing a planned purchase species and actually acquiring it remain 
 
 #### Notes For Confirmation
 - Confirmed through the v1.0.9 design interview and automated model tests.
+
+---
+
+### CASE-014 - Actual maternal purchase recalculates all hatch species
+status: confirmed
+priority: P0
+category: execution
+
+#### Intent
+Prove that a real parent purchased in stage 05 becomes the parent truth for stage 06 and recalculates the current and downstream Hatch Species.
+
+#### Inputs
+- User target: 刺甲贝
+- Breeding completion family: 大舌贝
+- A speed-31 female purchase slot is confirmed as 大钳蟹
+- Its paired male parent is 菊石兽
+
+#### Expected Planning Output
+- Confirming 大钳蟹 replaces the fallback species on the assigned leaf.
+- The direct breeding node is recalculated as 大钳蟹 because the real maternal parent is 大钳蟹.
+- Every downstream node is recalculated from its real parents; no node may retain a stale fallback species.
+
+#### Expected Execution Output
+- The step title uses `本次孵化产物：大钳蟹（继承母方）`.
+- The center label states `母方决定物种` while preserving the separate sex-lock instruction.
+- The result distinguishes `用户目标：刺甲贝` from `配种完成产物：大舌贝`.
+- No evolution step is generated; the UI states `后续进化不纳入执行计划`.

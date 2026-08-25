@@ -8,7 +8,7 @@ The user needs a rebuilt single HTML planner that can act as a trustworthy execu
 
 Rebuild the planner as a new single HTML application centered around one shared planning engine. The application will treat PokeMMO mechanism facts as the hard boundary, separate mechanism facts from strategy suggestions and execution records, and produce one main legal plan rather than pretending to compute a global optimum. Every result shown in the page and every exported long image will come from the same result model.
 
-The new planner will use a full-Pokedex unified data layer with explicit support states for each Pokemon. Users will be able to search for any Pokedex target as the user target, and the planner will internally map that target to the breeding target and breeding entry point when needed. If a target cannot be planned, the planner will produce a diagnosis instead of a partial plan. If a target can be planned, the planner will first generate a staged resource plan, then generate an execution plan with breeding steps and post-processing steps, including evolution where needed.
+The new planner will use a full-Pokedex unified data layer with explicit support states for each Pokemon. Users will be able to search for any Pokedex target as the user target, and the planner will internally map that target to the breeding target and breeding entry point when needed. If a target cannot be planned, the planner will produce a diagnosis instead of a partial plan. If a target can be planned, the planner will first generate a staged resource plan, then generate an execution plan containing only real breeding steps. When the User Final Target is evolved, the UI shows the distinct Breeding Completion Output and states that later evolution is outside the execution-plan scope.
 
 The planner will remain a single offline HTML deliverable, but its internal architecture will be modular: versioned data layer, validation and diagnosis layer, planning engine, execution-state layer, rendering layer, and export layer. Development-time test fixtures and scripts may exist temporarily, but the final shipped artifact remains one HTML file.
 
@@ -52,16 +52,16 @@ The planner will remain a single offline HTML deliverable, but its internal arch
 36. As a PokeMMO player, I want intermediate breeding outputs to live in a temporary plan resource pool rather than my long-term inventory, so that the execution model stays clean.
 37. As a PokeMMO player, I want to manually promote an intermediate output into long-term inventory only when I choose, so that temporary execution artifacts do not pollute my main stock.
 38. As a PokeMMO player, I want execution rollback to restore the appropriate inventory and temporary outputs when I undo a recorded step, so that I can correct mistaken confirmations.
-39. As a PokeMMO player, I want the planner to track breeding steps separately from post-processing steps, so that evolution and other follow-up actions do not get mixed into breeding costs.
-40. As a PokeMMO player, I want evolution steps included in the execution plan when my final target requires them, so that the plan reflects the real journey to the target.
-41. As a PokeMMO player, I want post-processing steps to be excluded from breeding cost totals, so that the budget remains faithful to the stated scope.
+39. As a PokeMMO player, I want the execution plan to contain only real breeding steps, so that later evolution is not mistaken for an in-plan action.
+40. As a PokeMMO player, I want the User Final Target and Breeding Completion Output shown separately, so that I know which species actually hatches.
+41. As a PokeMMO player, I want later evolution explicitly marked outside the execution-plan and breeding-cost scope, so that the budget remains faithful to the stated scope.
 42. As a PokeMMO player, I want the page to persist my latest state locally, so that I can reopen the HTML and keep working.
 43. As a PokeMMO player, I want the page to warn me that local browser data is the only persisted ledger, so that I understand the recovery limits.
 44. As a PokeMMO player, I want the application to remain useful on mobile, so that I can execute plans while playing.
 45. As a PokeMMO player, I want the application to remain dense and legible on desktop, so that I can inspect large plans and costs.
 46. As a PokeMMO player, I want mobile and desktop layouts to expose the same truth with different density, so that no critical execution data disappears on smaller screens.
 47. As a PokeMMO player, I want the long-image export to be a reliable mirror of the current page result, so that I can trust the exported artifact.
-48. As a PokeMMO player, I want the long-image export to contain user target, breeding target, evolution relation, diagnosis summary, inventory consumption, execution status, and cost audit, so that the export is self-explanatory.
+48. As a PokeMMO player, I want the long-image export to contain user target, breeding target, breeding completion output, evolution scope note, diagnosis summary, inventory consumption, execution status, and cost audit, so that the export is self-explanatory.
 49. As a PokeMMO player, I want the planner to show support-state explanations for unsupported Pokemon, so that the app still feels informative when it cannot solve a target.
 50. As a PokeMMO player, I want full-Pokedex search to remain responsive, so that using a complete data layer does not degrade the core experience.
 51. As a PokeMMO player, I want common plans with dozens of inventory entries to compute quickly, so that the tool remains practical in real use.
@@ -96,8 +96,8 @@ The planner will remain a single offline HTML deliverable, but its internal arch
 - Execution confirmation means the step has occurred in reality. The application must not use the same confirmation state for planning intent and completed execution.
 - Execution state transitions are reversible as record corrections. Undoing a recorded step restores the associated inventory and temporary-resource state for that plan.
 - Execution steps are dependency-ordered. The application must not allow later steps to be confirmed before upstream steps make their prerequisites available.
-- The execution model includes at least two step categories: breeding steps and post-processing steps. Evolution belongs to post-processing.
-- Post-processing steps appear in execution output but do not contribute to breeding cost totals.
+- The execution model contains real breeding steps only. Evolution is not generated as an execution step.
+- The result model and export show the Breeding Completion Output separately from the User Final Target and state that later evolution is outside the execution-plan and breeding-cost scope.
 - The page and export are two views over the same canonical result model. Export-specific drawing logic must not invent extra planner truth.
 - The final deliverable remains one offline HTML file. Development may use temporary auxiliary tests, fixtures, and tooling, but the shipped artifact is single-file.
 - The current external Pokedex text file is a bootstrap data source, not an untouchable authority. If live PokeMMO mechanics or confirmed examples contradict it, the planner data may be revised under explicit versioning.
@@ -112,7 +112,7 @@ The planner will remain a single offline HTML deliverable, but its internal arch
 - Diagnosis must be tested with representative mechanism-impossible and inventory-impossible cases.
 - Execution-state tests must confirm that planning does not consume inventory, confirmed steps do consume inventory after user confirmation, temporary outputs appear correctly, and rollback restores plan state.
 - Cost tests must verify both total cost and key cost decomposition fields, including separation of BP and yen.
-- Evolution and other post-processing cases must verify that those steps appear in execution output while remaining excluded from breeding-cost totals.
+- Evolved-target cases must verify that no evolution step appears, that the Breeding Completion Output is the real root Hatch Species, and that the evolution scope note is visible and excluded from breeding-cost totals.
 - Because there is no prior automated test suite in the current repository, the spec adopts confirmed example cases as the starting prior art. These examples should be turned into structured regression fixtures as implementation progresses.
 - Tests should prefer representative scenario coverage over assertions on internal helper functions. The application is a planner; therefore, scenario truth is the durable testing vocabulary.
 
