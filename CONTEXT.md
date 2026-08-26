@@ -8,9 +8,33 @@ The species whose breeding route and intermediate outputs are being planned. It 
 
 The factual sex domain of a species or inventory individual: female, male, genderless, or a normal sex distribution. It is distinct from a final-target sex preference. A UI control can be locked when a species has only one factual value.
 
+## Single-Sex Target
+
+A Breeding Target whose Biological Sex is always female or always male. Its output sex is a species fact rather than a Final-target Sex Preference. Special paired-offspring families whose hatch species is not deterministic remain outside this category until an explicit family rule is confirmed.
+
+## Male-Only Target Mainline
+
+The Target-Species Mainline for a male-only Breeding Target. Every breeding node pairs the target-family parent with Ditto so the output remains in the male-only target family. This restriction preserves the target species; it does not prevent a male-only Pokemon from serving as a donor for another species' female mainline.
+
+## Required Ditto Stage
+
+A multi-IV Ditto whose exact required IV combination is needed as the partner at one deterministic step of a Male-Only Target Mainline. It must be supplied by Long-Term Inventory or a Confirmed Purchase because Ditto Pairing Prohibition prevents constructing it from lower-IV Ditto. Until it is supplied, the Resource Plan must expose the exact missing Ditto requirement and the Execution Plan must remain waiting for acquisition rather than inventing a breeding step.
+
+## Female-Only Target Mainline
+
+The Target-Species Mainline for a female-only Breeding Target. It may pair with a compatible male from the active Egg Group or with Ditto because the female parent already preserves the target family.
+
+## Single-Sex Nature Mainline
+
+A Single-Sex Target's nature-bearing lineage. It begins with a target-family parent that has the requested nature and 0 target IVs, carries Everstone when nature must be inherited, and remains the target-family parent throughout the route.
+
 ## Final-target Sex Preference
 
 A requested sex for the root output of a normally sexed route. It is not an inventory fact and does not alter the base-parent count.
+
+## Sex Selection Fee
+
+The fee for choosing the sex of a specific Hatch Species at a breeding node. It is calculated from that actual output species and desired output sex. A species with a fixed Biological Sex has no selection fee; normally sexed donor outputs in the same route can still incur their own fee according to their real sex ratio.
 
 ## Genderless Route
 
@@ -18,7 +42,15 @@ A route for a genderless Breeding Target. Its left input is the genderless targe
 
 ## Ditto Partner
 
-A genderless pairing resource permitted on a Genderless Route. It may occupy the right pairing role; a Ditto target is also permitted to use Ditto or itself under the current rule boundary.
+A genderless pairing resource permitted when its other parent is a non-Ditto species. The output follows that non-Ditto parent's evolution family. Ditto cannot pair with another Ditto, so Ditto itself cannot be preserved as a Target-Species Mainline through breeding.
+
+## Ditto Pairing Prohibition
+
+The confirmed PokeMMO rule that two Ditto cannot breed with each other. A planner must reject a Ditto × Ditto node rather than treating it as a source of another Ditto. Consequently, a multi-IV Ditto required by a deterministic route must come from Long-Term Inventory or a Confirmed Purchase; it cannot be synthesized from 1V Ditto leaves.
+
+## Unsupported Ditto Breeding Target
+
+A Breeding Target whose species is Ditto. It has no legal Target-Species Mainline: Ditto cannot breed with Ditto, while pairing with a non-Ditto produces the non-Ditto parent's evolution family. The planner must report this route as unavailable instead of generating a resource or execution plan.
 
 ## Ditto Donor Substitute
 

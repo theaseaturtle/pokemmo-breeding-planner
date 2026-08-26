@@ -74,6 +74,11 @@ The planner will remain a single offline HTML deliverable, but its internal arch
 58. As a future maintainer, I want incomplete or uncertain Pokemon data to be visible at the support-state level, so that coverage expansion can proceed incrementally without misleading users.
 59. As a future maintainer, I want strategy guidance to be swappable without altering mechanism validation, so that recommendations can evolve independently.
 60. As a future maintainer, I want the final shipped artifact to stay a single HTML file, so that deployment and sharing remain frictionless.
+61. As a player breeding a male-only species, I want every step to preserve the target family by pairing its mainline with Ditto, so that the planner does not invent an incompatible ordinary donor route.
+62. As a player breeding a male-only species, I want each required multi-IV Ditto combination shown as a warehouse or purchase requirement, so that the planner never pretends lower-IV Ditto can breed into it.
+63. As a player, I want every Ditto × Ditto node rejected, so that resource allocation and execution remain faithful to the confirmed game rule.
+64. As a player, I want fixed-sex hatch species to have zero sex-selection fee, so that the audit does not charge for a choice the game does not offer.
+65. As a player selecting Ditto as the breeding target, I want an explicit mechanism-impossible diagnosis, so that I understand why breeding cannot preserve the Ditto family.
 
 ## Implementation Decisions
 
@@ -101,6 +106,11 @@ The planner will remain a single offline HTML deliverable, but its internal arch
 - The page and export are two views over the same canonical result model. Export-specific drawing logic must not invent extra planner truth.
 - The final deliverable remains one offline HTML file. Development may use temporary auxiliary tests, fixtures, and tooling, but the shipped artifact is single-file.
 - The current external Pokedex text file is a bootstrap data source, not an untouchable authority. If live PokeMMO mechanics or confirmed examples contradict it, the planner data may be revised under explicit versioning.
+- A male-only Target-Species Mainline pairs its target-family parent with one externally supplied Ditto at each step. Required multi-IV Ditto stages are atomic inventory or purchase inputs, not donor subtrees.
+- Ditto × Ditto is globally illegal. Allocation, migration validation, resource planning, and execution validation must never accept such a node.
+- A fixed male-only or female-only Hatch Species has no sex-selection fee. Fees for normally sexed donor outputs remain based on their own actual Hatch Species.
+- Ditto itself is not a legal Breeding Target: pairing with a non-Ditto preserves the non-Ditto family, while pairing with Ditto is illegal.
+- Nidoran-family and Volbeat/Illumise paired-offspring behavior remains rules-unconfirmed until a deterministic family rule is documented and tested.
 - Because the original specification is lost, confirmed example cases become part of the functional truth of the system. Image-derived examples may be inferred initially but must be confirmed and refined into structured regression cases.
 
 ## Testing Decisions

@@ -28,6 +28,64 @@ Legacy fields named `Expected post-processing steps` are interpreted as evolutio
 - `cost breakdown`
 - `export parity expectations`
 
+### CASE-005 - Male-only nature target uses acquired Ditto stages
+status: confirmed
+priority: P0
+category: happy-path
+
+#### Intent
+Prove that a male-only target preserves its family without inventing Ditto × Ditto breeding.
+
+#### Inputs
+- User target: 肯泰罗
+- Target IVs: 生命、物攻、物防、特防、速度 31
+- Target nature: 固执
+- Target final gender: fixed male
+- Inventory: optional exact-stage Ditto
+
+#### Expected Diagnosis
+- Outcome class: plannable
+- Expected explanation: male-only mainline pairs only with Ditto; multi-IV Ditto must be acquired
+
+#### Expected Planning Output
+- One nature-bearing Tauros-family mainline parent
+- Required Ditto stages: 1V, 2V, 3V, 4V, and 5V with the exact cumulative target-IV combinations
+- No Ditto × Ditto node and no attempt to synthesize multi-IV Ditto from 1V Ditto
+- Missing stages remain explicit warehouse or purchase requirements
+
+#### Expected Execution Output
+- Five dependency-ordered breeding steps
+- Every step has a non-Ditto target-family parent and one Ditto
+- Every hatch output remains in the Tauros family and has fixed male sex
+- A step remains waiting for purchase until its exact Ditto stage and required items are available
+
+#### Expected Cost Output
+- Fixed male hatch output has zero sex-selection fee
+- Multi-IV Ditto reference price begins at zero and confirmed 05-stage transaction prices drive actual spend
+
+---
+
+### CASE-006 - Ditto cannot breed with Ditto or preserve itself as target
+status: confirmed
+priority: P0
+category: mechanism-blocked
+
+#### Intent
+Prove the game-confirmed Ditto pairing prohibition is enforced globally.
+
+#### Inputs
+- User target: 百变怪, or any allocation that would place Ditto on both sides of one node
+
+#### Expected Diagnosis
+- Ditto target outcome class: mechanism-impossible
+- Expected explanation: Ditto cannot pair with Ditto; pairing with another species produces the non-Ditto family
+
+#### Expected Planning Output
+- No resource or execution plan for Ditto as the breeding target
+- No ordinary, genderless, or male-only route may contain Ditto × Ditto
+
+---
+
 ## Case Template
 
 ```md
