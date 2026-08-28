@@ -139,3 +139,11 @@ The execution-ready identity of one breeding input: its real species, Biological
 ## Finite-option Combobox
 
 A searchable, accessible control for selecting an existing finite option. It accepts only legal displayed options, supports mouse, Arrow Up, Arrow Down, Enter, and Escape, and restores the last legal value on invalid blur.
+
+## Baby Pokémon
+
+A non-breedable hatch form that must first evolve before it can serve as a breeding parent. A Baby Pokémon target is planned through its breedable evolution form, and some families require a matching Incense held by the maternal parent to produce the baby hatch.
+
+## Incense-gated Baby Output
+
+The final Hatch Species rule in which the maternal parent holds a specific Incense, changing the normal evolved hatch into a Baby Pokémon. The Incense is a consumed one-time item and is not an IV or nature inheritance item.
