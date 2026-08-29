@@ -146,4 +146,4 @@ A non-breedable hatch form that must first evolve before it can serve as a breed
 
 ## Incense-gated Baby Output
 
-The final Hatch Species rule in which the maternal parent holds a specific Incense, changing the normal evolved hatch into a Baby Pokémon. The Incense is a consumed one-time item and is not an IV or nature inheritance item.
+The final Hatch Species rule in which the maternal parent holds a specific Incense, changing the normal evolved hatch into a Baby Pokémon. Without that maternal Incense, the same pairing produces the Baby Pokémon's next-stage breedable form. A Baby-target route without the required maternal Incense is not executable. The Incense is a consumed one-time item and is not an IV or nature inheritance item.
