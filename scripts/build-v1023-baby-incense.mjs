@@ -47,4 +47,8 @@ html = html.replace("APP.stage1=x.stage1||null;APP.stage2=x.stage2||null;", "APP
 html = html.replace('<label>熏炉</label><input data-item="incense" placeholder="按目标自动使用" disabled>', '<label>\'+((selected()?.babyRule?.incense)||\'熏香\')+\'</label><input data-item="incense" type="number" min="0" value="\'+Number(APP.items.incense?.[selected()?.babyRule?.incenseKey]||0)+\'">');
 html = html.replace("if(k==='everstone')APP.items.everstone=v;else if(k==='incense'){}else APP.items.brace[k.slice(6)]=v;", "if(k==='everstone')APP.items.everstone=v;else if(k==='incense'){const key=selected()?.babyRule?.incenseKey;if(key){APP.items.incense=APP.items.incense||{};APP.items.incense[key]=v}}else APP.items.brace[k.slice(6)]=v;");
 html = html.replace("const stock=key==='everstone'?Number(APP.items.everstone||0):Number(APP.items.brace[key.slice(6)]||0);", "const stock=key==='everstone'?Number(APP.items.everstone||0):key.startsWith('incense:')?Number(APP.items.incense?.[key.slice(8)]||0):Number(APP.items.brace[key.slice(6)]||0);");
+html = html.replace(/function persist\(\)\{[\s\S]*?\}\nfunction load\(\)/, "function persist(){}\nfunction load()");
+html = html.replace(/function load\(\)\{[\s\S]*?\}\nfunction toast\(/, "function load(){}\nfunction toast(");
+html = html.replace(/, STORAGE_KEY='[^']+', PREVIOUS_STORAGE_KEY='[^']+', SCHEMA_VERSION=\d+/, '');
+html = html.replaceAll('localStorage.removeItem(STORAGE_KEY);location.reload()', 'location.reload()');
 writeFileSync(outputUrl, html);

@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-name" content="PokeMMO Breeding Planner v1.0.23">
-<meta name="release-date" content="2026-08-29">
+<meta name="application-name" content="PokeMMO Breeding Planner v1.0.24">
+<meta name="release-date" content="2026-08-30">
 <meta name="data-version" content="pokedex-gen1-5-bootstrap-2026-08-24-v1.0.9">
-<meta name="ruleset-version" content="pokemmo-breeding-tree-single-sex-2026-08-29-v1.0.10">
-<title>PokeMMO 配种执行规划器 · v1.0.23</title>
+<meta name="ruleset-version" content="pokemmo-breeding-tree-single-sex-2026-08-30-v1.0.10">
+<title>PokeMMO 配种执行规划器 · v1.0.24</title>
 <meta name="description" content="离线规划 PokeMMO 配种目标、亲本采购、道具消耗、执行步骤与实际成本。">
 <meta name="theme-color" content="#081115">
 <style>
@@ -86,7 +86,7 @@ input:hover,select:hover{border-color:#45636b}input:focus,select:focus{backgroun
 <div class="app">
   <header class="masthead">
     <div><div class="eyebrow">OFFLINE EXECUTION LEDGER / POKEMMO</div><h1>配种执行规划器</h1><p class="lede">把目标、资源分配、现实执行与成本审计放在同一份可追溯结果里。机制事实、策略建议和执行记录分别呈现。</p></div>
-    <div class="version-stack"><span class="badge cyan">APP v1.0.23 · 2026-08-29</span><span class="badge violet">DATA <span id="data-version-badge">...</span></span><span class="badge violet">RULES <span id="rules-version-badge">...</span></span><span class="badge warn" id="route-state-badge">尚未生成路线</span></div>
+    <div class="version-stack"><span class="badge cyan">APP v1.0.24 · 2026-08-30</span><span class="badge violet">DATA <span id="data-version-badge">...</span></span><span class="badge violet">RULES <span id="rules-version-badge">...</span></span><span class="badge warn" id="route-state-badge">尚未生成路线</span></div>
   </header>
   <nav class="workflow-nav" aria-label="规划阶段"><a href="#phase-target"><b>01–03</b><span>目标与库存</span></a><a href="#phase-resources"><b>04–05</b><span>规则与资源</span></a><a href="#phase-execution"><b>06</b><span>执行计划</span></a><a href="#phase-audit"><b>07</b><span>结果审计</span></a></nav>
   <main class="layout" id="main-content">
@@ -113,10 +113,10 @@ input:hover,select:hover{border-color:#45636b}input:focus,select:focus{backgroun
       <section class="panel" id="phase-audit"><div class="panel-head"><h2>07 / 结果与版本审计</h2><div class="actions" id="planner-actions"><button class="btn" id="btn-export-image">下载 PNG 长图</button><button class="btn" id="btn-print">打印 / PDF</button><button class="btn btn-danger" id="btn-reset-app">清除本版状态</button></div></div><div class="panel-body" id="audit-results"><div class="empty">生成路线后显示完整审计。</div></div></section>
     </section>
   </main>
-  <footer class="footer">v1.0.23-2026-08-29 · 开放纯雄百变怪主线；多V百变怪按阶段外购；全局禁止百变怪互配 · 可迁移 v1.0.21 完整账本。</footer>
+  <footer class="footer">v1.0.24-2026-08-30 · 开放纯雄百变怪主线；多V百变怪按阶段外购；全局禁止百变怪互配 · 可迁移 v1.0.21 完整账本。</footer>
 </div><div id="toast" class="toast" hidden></div>
 <script>
-const APP_VERSION='1.0.23', RELEASE_DATE='2026-08-29', DATA_VERSION='pokedex-gen1-5-bootstrap-2026-08-24-v1.0.9', RULESET_VERSION='pokemmo-breeding-tree-single-sex-2026-08-29-v1.0.10';
+const APP_VERSION='1.0.24', RELEASE_DATE='2026-08-30', DATA_VERSION='pokedex-gen1-5-bootstrap-2026-08-24-v1.0.9', RULESET_VERSION='pokemmo-breeding-tree-single-sex-2026-08-30-v1.0.10';
 const IV_FIELDS=[{key:'生命',className:'iv-hp',item:'力量负重'},{key:'物攻',className:'iv-atk',item:'力量护腕'},{key:'物防',className:'iv-def',item:'力量腰带'},{key:'特攻',className:'iv-spa',item:'力量镜'},{key:'特防',className:'iv-spd',item:'力量束带'},{key:'速度',className:'iv-spe',item:'力量护踝'}];
 const NATURES=['None','爽朗','固执','胆小','内敛','大胆','淘气','温和','慎重','天真','急躁','勇敢','冷静'];
 const SUPPORT_META={PLANNABLE:{label:'可完整规划',chip:'good'},IDENTIFIABLE_ONLY:{label:'仅可识别',chip:'muted'},NON_BREEDABLE:{label:'不可繁殖',chip:'bad'},RULES_UNCONFIRMED:{label:'规则未确认',chip:'warn'},DATA_INCOMPLETE:{label:'数据待补',chip:'warn'}};
@@ -692,7 +692,7 @@ function exportImage(){
   const rows=lines.map(([a,b])=>({a,b:wrap(b)})),height=Math.min(32760,120+rows.reduce((total,row)=>total+row.b.length*lineHeight+14,0));canvas.width=width;canvas.height=height;
   const draw=canvas.getContext('2d');draw.fillStyle='#091116';draw.fillRect(0,0,width,height);draw.fillStyle='#58d7d2';draw.font='700 26px Segoe UI, Microsoft YaHei';draw.fillText('PokeMMO 配种执行规划器',pad,55);let y=105;
   rows.forEach(row=>{draw.fillStyle='#58d7d2';draw.font='700 14px Segoe UI, Microsoft YaHei';draw.fillText(row.a,pad,y);draw.fillStyle='#e9eef2';draw.font='14px Segoe UI, Microsoft YaHei';row.b.forEach((text,index)=>draw.fillText(text,pad+labelWidth,y+index*lineHeight));y+=row.b.length*lineHeight+14});
-  canvas.toBlob(blob=>{if(!blob){toast('PNG 生成失败。','bad');return}const anchor=document.createElement('a');anchor.href=URL.createObjectURL(blob);anchor.download='pokemmo-breeding-plan-v1.0.23-'+RELEASE_DATE+'.png';anchor.click();setTimeout(()=>URL.revokeObjectURL(anchor.href),1000);toast('PNG 长图已生成。')},'image/png')
+  canvas.toBlob(blob=>{if(!blob){toast('PNG 生成失败。','bad');return}const anchor=document.createElement('a');anchor.href=URL.createObjectURL(blob);anchor.download='pokemmo-breeding-plan-v1.0.24-'+RELEASE_DATE+'.png';anchor.click();setTimeout(()=>URL.revokeObjectURL(anchor.href),1000);toast('PNG 长图已生成。')},'image/png')
 }
 function closeAllComboMenus(except){document.querySelectorAll('.combo-menu').forEach(menu=>{if(except?.contains(menu))return;menu.hidden=true;const input=menu.parentElement?.querySelector('[role="combobox"]');if(input)input.setAttribute('aria-expanded','false')})}
 function bind(){

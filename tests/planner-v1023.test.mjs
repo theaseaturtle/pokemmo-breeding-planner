@@ -3,8 +3,12 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import vm from 'node:vm';
 
-const releasePath = new URL('../app/pokemmo-breeding-planner-v1.0.23-2026-08-29.html', import.meta.url);
+const releasePath = new URL('../app/pokemmo-breeding-planner-v1.0.24-2026-08-30.html', import.meta.url);
 const html = readFileSync(releasePath, 'utf8');
+
+test('v1.0.23 不使用任何浏览器本地缓存', () => {
+  assert.doesNotMatch(html, /localStorage|STORAGE_KEY|PREVIOUS_STORAGE_KEY/);
+});
 
 function loadPlanner() {
   const script = html.match(/<script>([\s\S]*)<\/script>/)?.[1].replace(/init\(\);\s*$/, 'globalThis.x={APP,POKEDEX_RAW,BABY_RULES,makeSpecies,diagnosis,resourcePlan,buildStage2};');

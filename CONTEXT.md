@@ -72,10 +72,6 @@ A subtree whose root output is a donor for another breeding node rather than the
 
 The single Egg Group selected for all non-Ditto parents and outputs in a plan's Donor-Building Subtrees. A Breeding Target with one Egg Group fixes this value; a target with multiple Egg Groups requires one explicit choice.
 
-## Stale Resource Plan
-
-A retained Resource Plan whose target, inventory, pricing, or item inputs have changed since generation. It remains visible for comparison but cannot be locked for execution until regenerated.
-
 ## Strict Parent Match
 
 An inventory parent that satisfies its assigned role and carries the required IV without another target IV that would be discarded at that position. Automatic allocation prefers ordinary Strict Parent Matches and preserves Ditto as a fallback.
@@ -100,9 +96,9 @@ A record that the user has actually acquired one or more planned parents, includ
 
 The deterministic binding of each Confirmed Purchase parent to a purchased-parent leaf in confirmation order. It is the species identity used by the Execution Plan and takes precedence over Automatic Purchase Fallback.
 
-## Plan Acquisition Pool
+## Session Acquisition Pool
 
-The plan-scoped collection of Confirmed Purchases that have not yet been consumed by execution or transferred to Long-Term Inventory. It is kept separate from Long-Term Inventory so planned acquisitions do not silently become reusable stock.
+The current-page collection of Confirmed Purchases that have not yet been consumed by execution or transferred to Long-Term Inventory. It exists only during the current session and is discarded when the page is refreshed or closed.
 
 ## Remaining Purchase Quantity
 
@@ -122,7 +118,7 @@ The Hatch Species produced by the root breeding step. It can differ from the Use
 
 ## Route Replacement
 
-The confirmed change from one target route to another. It deletes the old Plan Acquisition Pool, including parent and item purchases, prices, and notes, while leaving Long-Term Inventory unchanged.
+The confirmed change from one target route to another. It deletes the current Session Acquisition Pool, including parent and item purchases, prices, and notes.
 
 ## Automatic Purchase Fallback
 
