@@ -151,6 +151,7 @@ test('所有需要熏香的幼年体都把熏香绑定到最终步骤母方', ()
     const finalStep = execution.steps.at(-1);
     assert.equal(finalStep.parentLoadouts[0].gender, 'F', babyName);
     assert.equal(finalStep.output.speciesName, babyName, babyName);
+    assert.match(finalStep.displayTitle, new RegExp(`第 \\d+ 步 · ${babyName}`), babyName);
     assert.equal(finalStep.parentLoadouts[0].heldItem, rule.incense, babyName);
     assert.equal(finalStep.parentLoadouts[1].gender, 'M', babyName);
     assert.equal(finalStep.parentLoadouts[1].heldItem, '不变之石', babyName);
