@@ -49,6 +49,7 @@ html = html.replace("if(k==='everstone')APP.items.everstone=v;else if(k==='incen
 html = html.replace("const stock=key==='everstone'?Number(APP.items.everstone||0):Number(APP.items.brace[key.slice(6)]||0);", "const stock=key==='everstone'?Number(APP.items.everstone||0):key.startsWith('incense:')?Number(APP.items.incense?.[key.slice(8)]||0):Number(APP.items.brace[key.slice(6)]||0);");
 html = html.replace(/function persist\(\)\{[\s\S]*?\}\nfunction load\(\)/, "function persist(){}\nfunction load()");
 html = html.replace(/function load\(\)\{[\s\S]*?\}\nfunction toast\(/, "function load(){}\nfunction toast(");
+html = html.replace("function invalidate(reason){if(APP.stage1)APP.stage1.meta.stale=true;if(APP.stage2)APP.stage2.stale=true;APP.staleHistory.push({at:new Date().toISOString(),reason});renderAll();persist()}", "function invalidate(reason){APP.stage1=null;APP.stage2=null;APP.staleHistory=[];renderAll()}");
 html = html.replace(/, STORAGE_KEY='[^']+', PREVIOUS_STORAGE_KEY='[^']+', SCHEMA_VERSION=\d+/, '');
 html = html.replaceAll('localStorage.removeItem(STORAGE_KEY);location.reload()', 'location.reload()');
 writeFileSync(outputUrl, html);
