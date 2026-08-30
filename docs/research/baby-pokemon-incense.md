@@ -33,15 +33,15 @@ PokeMMO 中，幼年体不能直接作为配种亲本；需要先进化到可繁
 
 | 全国图鉴 | 幼年体 | 母方亲本（可用于产出幼体） | 对应熏炉 |
 |---:|---|---|---|
-| 298 | Azurill | Marill / Azumarill | Sea Incense（海潮熏香） |
-| 360 | Wynaut | Wobbuffet | Lax Incense（悠闲熏香） |
-| 406 | Budew | Roselia / Roserade | Rose Incense（玫瑰熏香） |
-| 433 | Chingling | Chimecho | Pure Incense（洁净熏香） |
-| 438 | Bonsly | Sudowoodo | Rock Incense（岩石熏香） |
-| 439 | Mime Jr. | Mr. Mime / Mr. Rime | Odd Incense（奇异熏香） |
-| 440 | Happiny | Chansey / Blissey | Luck Incense（幸运熏香） |
-| 446 | Munchlax | Snorlax | Full Incense（饱腹熏香） |
-| 458 | Mantyke | Mantine | Wave Incense（潮湿熏香） |
+| 298 | 露力丽 | 玛力露 / 玛力露丽 | 海潮熏香（Sea Incense） |
+| 360 | 小果然 | 果然翁 | 悠闲熏香（Lax Incense） |
+| 406 | 含羞苞 | 毒蔷薇 / 罗丝雷朵 | 玫瑰熏香（Rose Incense） |
+| 433 | 铃铛响 | 风铃铃 | 洁净熏香（Pure Incense） |
+| 438 | 爱哭树 | 树才怪 | 岩石熏香（Rock Incense） |
+| 439 | 魔尼尼 | 魔墙人偶 | 怪异熏香（Odd Incense） |
+| 440 | 小福蛋 | 吉利蛋 / 幸福蛋 | 幸运熏香（Luck Incense） |
+| 446 | 小卡比兽 | 卡比兽 | 饱腹熏香（Full Incense） |
+| 458 | 小球飞鱼 | 巨翅飞鱼 | 涟漪熏香（Wave Incense） |
 
 ## 规则边界
 
